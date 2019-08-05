@@ -199,7 +199,7 @@ void SqList<T>::DeleteSqList1(T elem)
 		{
 			if(this->Data.Elem[i] == elem)
 			{
-				count[num] = i;
+				count[num] = i + 1;
 				num++;
 			}
 		}
@@ -208,9 +208,9 @@ void SqList<T>::DeleteSqList1(T elem)
 		else
 		{
 			cout << "表中共有" << num << "个" << elem << "元素" << endl;
-			for (int j = 0; j < num; j++)
+			for (int j = 0; j <= num; j++)
 			{
-				int temp = count[j] + 1;
+				int temp = count[j];
 				DeleteSqList(temp);
 			}
 		}
