@@ -199,7 +199,7 @@ void SqList<T>::DeleteSqList1(T elem)
 		{
 			if(this->Data.Elem[i] == elem)
 			{
-				count[num] = i + 1;
+				count[num] = i;
 				num++;
 			}
 		}
@@ -208,10 +208,13 @@ void SqList<T>::DeleteSqList1(T elem)
 		else
 		{
 			cout << "表中共有" << num << "个" << elem << "元素" << endl;
-			for (int j = 0; j <= num; j++)
+			for (int j = 0; j < num; j++)
 			{
-				int temp = count[j];
+				int temp = count[j] + 1;
+				count[j + 1]--;			  //因为删除一个元素后列表长度会减1，所以元素的位置会发生新的变化
+				cout << "**" << temp << endl;
 				DeleteSqList(temp);
+				OutputSqList();
 			}
 		}
 	}
@@ -255,9 +258,9 @@ void SqList<T>::LocateSqList(T elem)
 		}
 	}
 	cout << "元素的位置为：" << endl;
-	for (int j = 0; j < num; j++)
+	for (int j = 0; j <  num; j++)
 	{
-		cout << count[j]+ 1 << "    " ;
+		cout << count[j] + 1 << "    " ;
 	}
 	cout << endl;
 }
