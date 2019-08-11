@@ -73,7 +73,7 @@ SLinkList<T>::SLinkList(int num, T elem[])
 				temp->next = new Node<T>(*(elem + i)); 	//这里犯了一个错，就是把elem[i]直接丢进去，（）里面放的是T类型初始值，实参传进来的是T* elem[]，无法用下标进行访问
 				temp = temp->next;
 			}
-			temp->next = NULL;
+			temp->next = NULL; //这个不要也行，在初始化Node的时候会对temp->next初始化
 			cout << "finish<SL]inkList(int num, T elem[])>!" << endl;
 		}
 	}
@@ -213,6 +213,7 @@ void SLinkList<T>::DeleteNode(int i)			 //返回的是被删除的值
 				temp = temp->next;
 			Node<T> *p = temp->next;
 			temp->next = p->next;
+			delete p; //释放被删除的内存
 			cout << "finish<DeleteNode(int i)>!" << endl;
 		}
 	}
@@ -295,4 +296,10 @@ void SLinkList<T>::OutputList()
 		temp = temp->next;
 	}
 	cout << endl;
+}
+
+template<class T>
+ostream& operator<< <>(ostream &out, SLinkList<T> &slinklist)
+{
+	return out;
 }
